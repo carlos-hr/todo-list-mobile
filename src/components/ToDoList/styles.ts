@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     height: 20,
     textAlign: "center",
     borderWidth: 1,
-    borderRadius: 1000,
+    borderRadius: 999,
     borderColor: "white",
   },
 });
