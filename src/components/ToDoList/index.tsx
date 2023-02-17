@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { ToDos } from "./ToDos";
@@ -40,13 +40,33 @@ export function ToDoList() {
   }
 
   function toogleTask(id: string) {
-    const newList = tasksList.map((task) => {
-      if (task.id === id) {
-        return { ...task, done: !task.done };
-      }
+    const newList = tasksList
+      .map((task) => {
+        if (task.id === id) {
+          return { ...task, done: !task.done };
+        }
 
-      return task;
-    });
+        return task;
+      })
+      .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+      .sort((a, b) => Number(a.done) - Number(b.done));
+
+    setTasksList(newList);
+  }
+
+  function sortTasks(sort: string) {
+    console.log("bbb", sort == " alphabetical", sort, typeof sort);
+    let newList = tasksList;
+    if (sort === "alphabetical") {
+      newList
+        .sort((a, b) => Number(b.done) - Number(a.done))
+        .sort((a, b) => a.description.localeCompare(b.description));
+      console.log("aaa", newList);
+    } else if (sort === "done") {
+      newList.sort((a, b) => Number(a.done) - Number(b.done));
+    } else if (sort === "createdAt") {
+      newList.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+    }
 
     setTasksList(newList);
   }
@@ -68,6 +88,7 @@ export function ToDoList() {
         tasksList={tasksList}
         deleteTask={deleteTask}
         toggleTask={toogleTask}
+        sortTasks={sortTasks}
       />
     </>
   );

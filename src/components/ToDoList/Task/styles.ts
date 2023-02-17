@@ -2,15 +2,6 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/theme";
 
 export const styles = StyleSheet.create({
-  container: {
-    height: "100%",
-  },
-
-  dropdown: {
-    zIndex: 2,
-    position: "relative",
-  },
-
   taskContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

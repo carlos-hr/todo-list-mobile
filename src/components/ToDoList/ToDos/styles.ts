@@ -6,6 +6,10 @@ export const styles = StyleSheet.create({
     marginTop: 32,
   },
 
+  dropdownContainer: {
+    minHeight: 180,
+  },
+
   infoContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
