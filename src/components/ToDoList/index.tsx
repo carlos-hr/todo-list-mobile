@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { ToDos } from "./ToDos";
@@ -55,13 +55,10 @@ export function ToDoList() {
   }
 
   function sortTasks(sort: string) {
-    console.log("bbb", sort == " alphabetical", sort, typeof sort);
     let newList = tasksList;
+
     if (sort === "alphabetical") {
-      newList
-        .sort((a, b) => Number(b.done) - Number(a.done))
-        .sort((a, b) => a.description.localeCompare(b.description));
-      console.log("aaa", newList);
+      newList.sort((a, b) => a.description.localeCompare(b.description));
     } else if (sort === "done") {
       newList.sort((a, b) => Number(a.done) - Number(b.done));
     } else if (sort === "createdAt") {
